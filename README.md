@@ -230,22 +230,9 @@ This project demonstrates:
 - **Code Organization** and package structure
 - **Extensibility** and maintainability
 
-## 📝 Future Enhancements
 
-- [ ] Database persistence
-- [ ] Multiple entry/exit gates
-- [ ] Real-time slot monitoring
-- [ ] Reservation system
-- [ ] Dynamic pricing based on demand
-- [ ] User authentication and authorization
-- [ ] Reporting and analytics
-- [ ] Mobile app integration
 
-## 👨‍💻 Author
 
-**Vaibhav** - [GitHub Profile](https://github.com/vaibhav129)
-
-## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
 
