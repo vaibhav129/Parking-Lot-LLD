@@ -4,29 +4,45 @@ import parkingSlot.ParkingSlot;
 import vechicle.Vechicle;
 
 import java.util.*;
+
 public class ParkingLot {
-    List<ParkingSlot>ps=new ArrayList();
-    public void addSlot(ParkingSlot p)
-    {
-        ps.add(p);
+    private List<ParkingSlot> parkingSlots = new ArrayList<>();
+    
+    /**
+     * Add a parking slot to the parking lot
+     * @param parkingSlot the parking slot to add
+     */
+    public void addSlot(ParkingSlot parkingSlot) {
+        parkingSlots.add(parkingSlot);
     }
-    public void remove(ParkingSlot p)
-    {
-        ps.remove(p);
+    
+    /**
+     * Remove a parking slot from the parking lot
+     * @param parkingSlot the parking slot to remove
+     */
+    public void remove(ParkingSlot parkingSlot) {
+        parkingSlots.remove(parkingSlot);
     }
-    public ParkingSlot findSlot(Vechicle v)
-    {
-        for(ParkingSlot p:ps)
-        {
-            if(p.slotVechicleType(v) && !p.isEmptyCheck(v))
-            {
-                return p;
+    
+    /**
+     * Find an available parking slot for the given vehicle
+     * @param vehicle the vehicle to find a slot for
+     * @return available parking slot or null if none found
+     */
+    public ParkingSlot findSlot(Vechicle vehicle) {
+        for (ParkingSlot parkingSlot : parkingSlots) {
+            if (parkingSlot.slotVechicleType(vehicle) && !parkingSlot.isEmptyCheck(vehicle)) {
+                return parkingSlot;
             }
         }
         return null;
     }
-    public void removeVechicle(ParkingSlot p)
-    {
-        p.remove();
+    
+    /**
+     * Remove vehicle from the specified parking slot
+     * @param parkingSlot the parking slot to remove vehicle from
+     */
+    public void removeVechicle(ParkingSlot parkingSlot) {
+        parkingSlot.remove();
     }
 }

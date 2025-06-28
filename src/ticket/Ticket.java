@@ -5,24 +5,26 @@ import parkingSlot.ParkingSlot;
 public class Ticket {
 
     int ticketId;
-    String type;
-    String time;
-    private ParkingSlot slot;
-    public Ticket(int ticketId,String type,String time,ParkingSlot slot)
-    {
-        this.ticketId=ticketId;
-        this.slot=slot;
-        this.type=type;
-        this.time=time;
+    String vehicleType;
+    String entryTime;
+    private ParkingSlot parkingSlot;
+    
+    public Ticket(int ticketId, String vehicleType, String entryTime, ParkingSlot parkingSlot) {
+        this.ticketId = ticketId;
+        this.parkingSlot = parkingSlot;
+        this.vehicleType = vehicleType;
+        this.entryTime = entryTime;
     }
-    public void getdetails()
-    {
-        System.out.println(ticketId+"id"+type+"vechicle type"+time+"Time");
+    
+    public void getdetails() {
+        System.out.println(ticketId + " id " + vehicleType + " vehicle type " + entryTime + " Time");
     }
+    
     public int getTicketId() {
         return ticketId;
     }
+    
     public ParkingSlot getSlot() {
-        return slot;
+        return parkingSlot;
     }
 }

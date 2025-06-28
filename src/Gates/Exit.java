@@ -7,29 +7,28 @@ import vechicle.Vechicle;
 import ParkingStrategy.CalculateFee;
 
 public class Exit {
-    ParkingManager p;
-    CalculateFee ps;
-   public Exit(ParkingManager p,CalculateFee c)
-   {
-       this.p=p;
-       this.ps=c;
-   }
-   public boolean exitallow(Ticket t, Payment pa)
-    {
+    ParkingManager parkingManager;
+    CalculateFee pricingStrategy;
+    
+    public Exit(ParkingManager parkingManager, CalculateFee pricingStrategy) {
+        this.parkingManager = parkingManager;
+        this.pricingStrategy = pricingStrategy;
+    }
+    
+    public boolean exitallow(Ticket ticket, Payment payment) {
         System.out.println("Processing exit");
-        if(!p.getActiveTickets().containsKey(t.getTicketId())){
+        if (!parkingManager.getActiveTickets().containsKey(ticket.getTicketId())) {
             System.out.println("Ticket does not exist");
         }
-        int fee=ps.calcutefee();
-        System.out.println("Pricing Strategy: " + ps.returntype());
-         if(pa.ProcessPayment()){
-             p.getActiveTickets().remove(t.getTicketId());
-             p.getParkingLot().removeVechicle(t.getSlot());
-             System.out.println("Exiting the vechicle");
-         }
-         else {
-             System.out.println("Payment failed. Vehicle cannot exit.");
-         }
+        int fee = pricingStrategy.calcutefee();
+        System.out.println("Pricing Strategy: " + pricingStrategy.returntype());
+        if (payment.ProcessPayment()) {
+            parkingManager.getActiveTickets().remove(ticket.getTicketId());
+            parkingManager.getParkingLot().removeVechicle(ticket.getSlot());
+            System.out.println("Exiting the vehicle");
+        } else {
+            System.out.println("Payment failed. Vehicle cannot exit.");
+        }
 
         return false;
     }

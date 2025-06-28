@@ -1,12 +1,11 @@
 package vechicle;
 
 public abstract class Vechicle {
-    String PlateNumber;
+    String plateNumber;
 
-    public Vechicle(String Pn)
-    {
-        this.PlateNumber=Pn;
+    public Vechicle(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
+    
     public abstract String TypeVechicle();
-
 }

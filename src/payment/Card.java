@@ -1,6 +1,6 @@
 package payment;
 
-public class Card extends Payment{
+public class Card extends Payment {
     @Override
     public String getPaymentType() {
         return "Card";
@@ -8,7 +8,7 @@ public class Card extends Payment{
 
     @Override
     public boolean ProcessPayment() {
-        System.out.println("Payment Proccessed with Card");
+        System.out.println("Payment Processed with Card");
         return true;
     }
 }

@@ -8,34 +8,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ParkingManager {
-    ParkingLot s;
-    Map<Integer, Ticket>active;
-    int slotcounter;
-    public ParkingManager(ParkingLot p)
-    {
-        this.s=p;
-        this.active=new HashMap<>();
-        this.slotcounter=1;
+    ParkingLot parkingLot;
+    Map<Integer, Ticket> activeTickets;
+    int ticketCounter;
+    
+    public ParkingManager(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
+        this.activeTickets = new HashMap<>();
+        this.ticketCounter = 1;
     }
-    public Ticket CreateTicket(Vechicle v)
-    {
-        ParkingSlot slot= s.findSlot(v);
-        if(slot==null)
-        {
+    
+    public Ticket CreateTicket(Vechicle vehicle) {
+        ParkingSlot slot = parkingLot.findSlot(vehicle);
+        if (slot == null) {
             System.out.println("nahi hai parking");
         }
-        slot.ParkVechicle(v);
-        int ticketid=slotcounter;
-        slotcounter++;
-        Ticket obj= new Ticket(ticketid,v.TypeVechicle(),"time", slot);
-        active.put(ticketid,obj);
-        System.out.println("Ticket created: " + ticketid + " for ");
-        return obj;
+        slot.ParkVechicle(vehicle);
+        int ticketId = ticketCounter;
+        ticketCounter++;
+        Ticket ticket = new Ticket(ticketId, vehicle.TypeVechicle(), "time", slot);
+        activeTickets.put(ticketId, ticket);
+        System.out.println("Ticket created: " + ticketId + " for ");
+        return ticket;
     }
+    
     public Map<Integer, Ticket> getActiveTickets() {
-        return new HashMap<>(active);
+        return new HashMap<>(activeTickets);
     }
+    
     public ParkingLot getParkingLot() {
-        return s;
+        return parkingLot;
     }
 }

@@ -4,7 +4,7 @@ import vechicle.Vechicle;
 
 import java.time.Duration;
 
-public class FeeHour implements CalculateFee{
+public class FeeHour implements CalculateFee {
     @Override
     public int calcutefee() {
         return 120;

@@ -14,26 +14,40 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("=== PARKING LOT SYSTEM DEMO (Strategy Pattern) ===\n");
-        ParkingLot lot=new ParkingLot();
-        lot.addSlot(new TwoWheeler(1));
-        lot.addSlot(new FourWheeler(2));
+        
+        // Initialize parking lot with slots
+        ParkingLot parkingLot = new ParkingLot();
+        parkingLot.addSlot(new TwoWheeler(1));
+        parkingLot.addSlot(new FourWheeler(2));
 
-        ParkingManager p=new ParkingManager(lot);
-        Entry e=new Entry(p);
+        // Initialize parking manager and entry gate
+        ParkingManager parkingManager = new ParkingManager(parkingLot);
+        Entry entryGate = new Entry(parkingManager);
+        
         System.out.println("--- VEHICLE ENTRY ---");
-         Bike tw=new Bike("Tw01");
-         Car fw=new Car("fw01");
-        Ticket t1=e.allowentry(tw);
-        Ticket t2=e.allowentry(fw);
+        
+        // Create vehicles
+        Bike bike = new Bike("BIKE001");
+        Car car = new Car("CAR001");
+        
+        // Allow vehicle entry and create tickets
+        Ticket bikeTicket = entryGate.allowentry(bike);
+        Ticket carTicket = entryGate.allowentry(car);
+        
         try {
             Thread.sleep(1000); // 1 second delay
-        } catch (InterruptedException j) {
-            j.printStackTrace();
+        } catch (InterruptedException interruptedException) {
+            interruptedException.printStackTrace();
         }
+        
         System.out.println("\n--- EXIT WITH HOURLY PRICING ---");
-        CalculateFee hourlyPricing = new FeeHour();
-        Exit exitGate1 = new Exit(p, hourlyPricing);
+        
+        // Set up exit gate with hourly pricing strategy
+        CalculateFee hourlyPricingStrategy = new FeeHour();
+        Exit exitGate = new Exit(parkingManager, hourlyPricingStrategy);
         Cash cashPayment = new Cash();
-        exitGate1.exitallow(t1, cashPayment);
+        
+        // Process vehicle exit
+        exitGate.exitallow(bikeTicket, cashPayment);
     }
 }

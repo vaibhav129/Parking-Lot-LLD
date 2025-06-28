@@ -5,22 +5,20 @@ import ticket.Ticket;
 import vechicle.Vechicle;
 
 public class Entry {
-    ParkingManager p;
-    public Entry(ParkingManager p)
-    {
-        this.p=p;
+    ParkingManager parkingManager;
+    
+    public Entry(ParkingManager parkingManager) {
+        this.parkingManager = parkingManager;
     }
-    public Ticket allowentry(Vechicle v)
-    {
-        Ticket t=p.CreateTicket(v);
-        if(t!=null)
-        {
+    
+    public Ticket allowentry(Vechicle vehicle) {
+        Ticket ticket = parkingManager.CreateTicket(vehicle);
+        if (ticket != null) {
             System.out.println("ticket create");
-            t.getdetails();
-        }
-        else {
+            ticket.getdetails();
+        } else {
             System.out.println("ticket cant create");
         }
-        return t;
+        return ticket;
     }
 }

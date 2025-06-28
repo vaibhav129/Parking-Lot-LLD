@@ -3,41 +3,41 @@ package parkingSlot;
 import vechicle.Vechicle;
 
 public abstract class ParkingSlot {
-    int SlotId;
+    int slotId;
     boolean isOccupied;
-    Vechicle ps;
-    public ParkingSlot(int slot)
-    {
-        this.SlotId=slot;
-        this.isOccupied=false;
-        this.ps=null;
+    Vechicle parkedVehicle;
+    
+    public ParkingSlot(int slotId) {
+        this.slotId = slotId;
+        this.isOccupied = false;
+        this.parkedVehicle = null;
     }
-    public boolean isEmptyCheck(Vechicle v)
-    {
+    
+    public boolean isEmptyCheck(Vechicle vehicle) {
         return isOccupied;
     }
 
     public int getSlotId() {
-        return SlotId;
+        return slotId;
     }
 
     public Vechicle getVechicle() {
-        return ps;
+        return parkedVehicle;
     }
-    public void ParkVechicle(Vechicle v)
-    {
-        if(slotVechicleType(v))
-        {
-            this.ps=v;
-            this.isOccupied=true;
+    
+    public void ParkVechicle(Vechicle vehicle) {
+        if (slotVechicleType(vehicle)) {
+            this.parkedVehicle = vehicle;
+            this.isOccupied = true;
         }
     }
-    public Vechicle remove()
-    {
-        Vechicle v=this.ps;
-        this.ps=null;
-        this.isOccupied=false;
-        return v;
+    
+    public Vechicle remove() {
+        Vechicle vehicle = this.parkedVehicle;
+        this.parkedVehicle = null;
+        this.isOccupied = false;
+        return vehicle;
     }
-    public abstract boolean slotVechicleType(Vechicle v);
+    
+    public abstract boolean slotVechicleType(Vechicle vehicle);
 }
